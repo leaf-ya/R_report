@@ -23,3 +23,10 @@ DA_data <- read_csv(here("inputs/Domestic-abuse-data_Scotland.csv"))
 ```
 
 ## Prepare the data
+
+```{r inspect-data}
+glimpse(DA_data)
+```
+
+
+
