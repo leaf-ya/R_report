@@ -11,11 +11,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Aim
 
 ## Load packages
+
 ```{r load-packages}
 library(tidyverse)
 ```
-
-
 ## Read in data
+
+```{r read-data}
+library(here)
+DA_data <- read_csv(here("inputs/Domestic-abuse-data_Scotland.csv"))
+```
 
 ## Prepare the data

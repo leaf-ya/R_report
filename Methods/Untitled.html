@@ -374,6 +374,17 @@ display: none;
 </div>
 <div id="read-in-data" class="section level2">
 <h2>Read in data</h2>
+<pre class="r"><code>library(here)</code></pre>
+<pre><code>## here() starts at /Users/alifyamukadam/Documents/GitHub/R_Project/R_report</code></pre>
+<pre class="r"><code>DA_data &lt;- read_csv(here(&quot;inputs/Domestic-abuse-data_Scotland.csv&quot;))</code></pre>
+<pre><code>## Rows: 19 Columns: 11</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (6): area_code, area_type, area_name, period, type_definition, indicator
+## dbl (5): year, numerator, measure, upper_confidence_interval, lower_confiden...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 <div id="prepare-the-data" class="section level2">
 <h2>Prepare the data</h2>
