@@ -1,0 +1,20 @@
+"area_code","area_type","area_name","year","period","type_definition","indicator","numerator","measure","upper_confidence_interval","lower_confidence_interval"
+"S00000001","Scotland","Scotland",2003,"2003/04 financial year","Crude rate per 10,000 population","Domestic abuse",41235,81.4,82.1,80.6
+"S00000001","Scotland","Scotland",2004,"2004/05 financial year","Crude rate per 10,000 population","Domestic abuse",43633,85.8,86.6,85
+"S00000001","Scotland","Scotland",2005,"2005/06 financial year","Crude rate per 10,000 population","Domestic abuse",45331,88.7,89.5,87.9
+"S00000001","Scotland","Scotland",2006,"2006/07 financial year","Crude rate per 10,000 population","Domestic abuse",48884,95.2,96.1,94.4
+"S00000001","Scotland","Scotland",2007,"2007/08 financial year","Crude rate per 10,000 population","Domestic abuse",49949,96.6,97.5,95.8
+"S00000001","Scotland","Scotland",2008,"2008/09 financial year","Crude rate per 10,000 population","Domestic abuse",53931,103.7,104.5,102.8
+"S00000001","Scotland","Scotland",2009,"2009/10 financial year","Crude rate per 10,000 population","Domestic abuse",51926,99.2,100.1,98.4
+"S00000001","Scotland","Scotland",2010,"2010/11 financial year","Crude rate per 10,000 population","Domestic abuse",55698,105.8,106.7,105
+"S00000001","Scotland","Scotland",2011,"2011/12 financial year","Crude rate per 10,000 population","Domestic abuse",59847,112.9,113.8,112
+"S00000001","Scotland","Scotland",2012,"2012/13 financial year","Crude rate per 10,000 population","Domestic abuse",60080,113.1,114,112.2
+"S00000001","Scotland","Scotland",2013,"2013/14 financial year","Crude rate per 10,000 population","Domestic abuse",58439,109.7,110.6,108.8
+"S00000001","Scotland","Scotland",2014,"2014/15 financial year","Crude rate per 10,000 population","Domestic abuse",59882,112,112.9,111.1
+"S00000001","Scotland","Scotland",2015,"2015/16 financial year","Crude rate per 10,000 population","Domestic abuse",58104,108.1,109,107.3
+"S00000001","Scotland","Scotland",2016,"2016/17 financial year","Crude rate per 10,000 population","Domestic abuse",58810,108.8,109.7,107.9
+"S00000001","Scotland","Scotland",2017,"2017/18 financial year","Crude rate per 10,000 population","Domestic abuse",59541,109.8,110.6,108.9
+"S00000001","Scotland","Scotland",2018,"2018/19 financial year","Crude rate per 10,000 population","Domestic abuse",60641,111.5,112.4,110.6
+"S00000001","Scotland","Scotland",2019,"2019/20 financial year","Crude rate per 10,000 population","Domestic abuse",62907,115.1,116,114.2
+"S00000001","Scotland","Scotland",2020,"2020/21 financial year","Crude rate per 10,000 population","Domestic abuse",65251,119.4,120.3,118.5
+"S00000001","Scotland","Scotland",2021,"2021/22 financial year","Crude rate per 10,000 population","Domestic abuse",64807,118.3,119.2,117.4
