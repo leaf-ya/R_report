@@ -11,22 +11,51 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Aim
 
 ## Load packages
-
 ```{r load-packages}
 library(tidyverse)
+library(viridis)
+library(patchwork)
+library(plotly)
 ```
-## Read in data
 
+## Data acquisition
 ```{r read-data}
 library(here)
-DA_data <- read_csv(here("inputs/Domestic-abuse-data_Scotland.csv"))
+DA_Scot_data <- read_csv(here("inputs/Domestic-abuse-data_Scotland.csv"))
+
+DA_Scot_HB_data <- read_csv(here("inputs/Scoland-region-data.csv"))
 ```
 
-## Prepare the data
-
+### Prepare the data
 ```{r inspect-data}
-glimpse(DA_data)
+glimpse(DA_Scot_data) %>% 
+summary()
+
+glimpse(DA_Scot_HB_data) %>% 
+  summary()
+```
+## Data Cleaning
+
+### Select and tidy the data to plot domestic abuse trend in Scotland
+```{r select-tidy-DA_Scot-data}
+DA_trend_data <- DA_Scot_data %>% 
+  select() %>% 
+  rename() %>% 
+  arrange(desc())
+  head() %>% 
+  summary()
 ```
 
+### Select and tidy the data to plot domestic abuse across Scotland NHS health borads in 2021
+```{r}
 
+```
+
+### Remove missing values
+No missing values highlighted in summary
+
+## Data visualisation
+```{r plot-data}
+
+```
 
