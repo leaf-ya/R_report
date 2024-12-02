@@ -357,6 +357,9 @@ display: none;
 
 <div id="aim" class="section level2">
 <h2>Aim</h2>
+<p>To create data science workflow to study the trend of domestic abuse
+incidents and crimes in Scotland from 2003 to 2021, as well as the
+prevalence of domestic abuse across NHS health boards in 2021.</p>
 </div>
 <div id="load-packages" class="section level2">
 <h2>Load packages</h2>
@@ -500,10 +503,42 @@ summary()</code></pre>
 <div id="select-and-tidy-the-data-to-plot-domestic-abuse-trend-in-scotland" class="section level3">
 <h3>Select and tidy the data to plot domestic abuse trend in
 Scotland</h3>
+<pre class="r"><code>DA_trend_data &lt;- DA_Scot_data %&gt;% 
+  select(&#39;period&#39;,&#39;measure&#39;) %&gt;% 
+  rename(&#39;Year&#39; = &#39;period&#39;,
+         &#39;Prevalence&#39; = &#39;measure&#39;
+         )
+head(DA_trend_data)</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   Year                   Prevalence
+##   &lt;chr&gt;                       &lt;dbl&gt;
+## 1 2003/04 financial year       81.4
+## 2 2004/05 financial year       85.8
+## 3 2005/06 financial year       88.7
+## 4 2006/07 financial year       95.2
+## 5 2007/08 financial year       96.6
+## 6 2008/09 financial year      104.</code></pre>
 </div>
 <div id="select-and-tidy-the-data-to-plot-domestic-abuse-across-scotland-nhs-health-boards-in-2021" class="section level3">
 <h3>Select and tidy the data to plot domestic abuse across Scotland NHS
 health boards in 2021</h3>
+<pre class="r"><code>DA_2021_HB_data &lt;- DA_Scot_HB_data %&gt;% 
+  filter(year == &quot;2021&quot;) %&gt;% 
+  select(&#39;area_name&#39;,&#39;measure&#39;) %&gt;% 
+  rename(&#39;NHS Health Board&#39; = &#39;area_name&#39;, 
+         &#39;Prevalence&#39; = &#39;measure&#39;) %&gt;% 
+  arrange(desc(Prevalence))
+
+head(DA_2021_HB_data)</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   `NHS Health Board`          Prevalence
+##   &lt;chr&gt;                            &lt;dbl&gt;
+## 1 NHS Fife                          144.
+## 2 NHS Forth Valley                  130.
+## 3 NHS Lanarkshire                   129.
+## 4 NHS Greater Glasgow &amp; Clyde       126.
+## 5 NHS Tayside                       123.
+## 6 NHS Ayrshire &amp; Arran              122.</code></pre>
 </div>
 <div id="remove-missing-values" class="section level3">
 <h3>Remove missing values</h3>
