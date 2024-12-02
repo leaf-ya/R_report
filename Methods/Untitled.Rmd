@@ -9,8 +9,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## Aim
+To create data science workflow to study the trend of domestic abuse incidents and crimes in Scotland from 2003 to 2021, as well as the prevalence of domestic abuse across NHS health boards in 2021.
 
 ## Load packages
+
 ```{r load-packages}
 library(tidyverse)
 library(viridis)
@@ -19,11 +21,16 @@ library(plotly)
 ```
 
 ## Data acquisition
+
+Domestic abuse data sets contain information on the number of domestic abuse incidents and crimes recorded by Scotland police, and the prevalence (Crude rate per 10,000 population) recorded from 2003 to 2021 across Scotland and NHS Scotland health boards.
+The data sets were downloaded from the Scottish Government (Scottish Crime Statistics) available
+on [Scottish Public Health Observatory](https://scotland.shinyapps.io/ScotPHO_profiles_tool/_w_37cec01a/#tab-5211-2)
+
 ```{r read-data}
 library(here)
 DA_Scot_data <- read_csv(here("inputs/Domestic-abuse-data_Scotland.csv"))
 
-DA_Scot_HB_data <- read_csv(here("inputs/Scoland-region-data.csv"))
+DA_Scot_HB_data <- read_csv(here("inputs/Scoland-HB-data.csv"))
 ```
 
 ### Prepare the data
@@ -34,25 +41,25 @@ summary()
 glimpse(DA_Scot_HB_data) %>% 
   summary()
 ```
-## Data Cleaning
+## Data cleaning
 
 ### Select and tidy the data to plot domestic abuse trend in Scotland
 ```{r select-tidy-DA_Scot-data}
 DA_trend_data <- DA_Scot_data %>% 
-  select() %>% 
+  select("period", "measure") %>% 
   rename() %>% 
-  arrange(desc())
+  arrange(desc("measure")) %>% 
   head() %>% 
   summary()
 ```
 
-### Select and tidy the data to plot domestic abuse across Scotland NHS health borads in 2021
+### Select and tidy the data to plot domestic abuse across Scotland NHS health boards in 2021
 ```{r}
 
 ```
 
 ### Remove missing values
-No missing values highlighted in summary
+No missing values highlighted in the summary.
 
 ## Data visualisation
 ```{r plot-data}

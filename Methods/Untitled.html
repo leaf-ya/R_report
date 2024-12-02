@@ -371,12 +371,37 @@ display: none;
 ## ✖ dplyr::filter() masks stats::filter()
 ## ✖ dplyr::lag()    masks stats::lag()
 ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(viridis)</code></pre>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<pre class="r"><code>library(patchwork)
+library(plotly)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;plotly&#39;
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter
+## 
+## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
 </div>
-<div id="read-in-data" class="section level2">
-<h2>Read in data</h2>
+<div id="data-acquisition" class="section level2">
+<h2>Data acquisition</h2>
+<p>Domestic abuse data sets contain information on the number of
+domestic abuse incidents and crimes recorded by Scotland police, and the
+prevalence (Crude rate per 10,000 population) recorded from 2003 to 2021
+across Scotland and NHS Scotland health boards. The data sets were
+downloaded from the Scottish Government (Scottish Crime Statistics)
+available on <a href="https://scotland.shinyapps.io/ScotPHO_profiles_tool/_w_37cec01a/#tab-5211-2">Scottish
+Public Health Observatory</a></p>
 <pre class="r"><code>library(here)</code></pre>
 <pre><code>## here() starts at /Users/alifyamukadam/Documents/GitHub/R_Project/R_report</code></pre>
-<pre class="r"><code>DA_data &lt;- read_csv(here(&quot;inputs/Domestic-abuse-data_Scotland.csv&quot;))</code></pre>
+<pre class="r"><code>DA_Scot_data &lt;- read_csv(here(&quot;inputs/Domestic-abuse-data_Scotland.csv&quot;))</code></pre>
 <pre><code>## Rows: 19 Columns: 11</code></pre>
 <pre><code>## ── Column specification ────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
@@ -385,10 +410,19 @@ display: none;
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div id="prepare-the-data" class="section level2">
-<h2>Prepare the data</h2>
-<pre class="r"><code>glimpse(DA_data)</code></pre>
+<pre class="r"><code>DA_Scot_HB_data &lt;- read_csv(here(&quot;inputs/Scoland-HB-data.csv&quot;))</code></pre>
+<pre><code>## Rows: 266 Columns: 11
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (6): area_code, area_type, area_name, period, type_definition, indicator
+## dbl (5): year, numerator, measure, upper_confidence_interval, lower_confiden...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="prepare-the-data" class="section level3">
+<h3>Prepare the data</h3>
+<pre class="r"><code>glimpse(DA_Scot_data) %&gt;% 
+summary()</code></pre>
 <pre><code>## Rows: 19
 ## Columns: 11
 ## $ area_code                 &lt;chr&gt; &quot;S00000001&quot;, &quot;S00000001&quot;, &quot;S00000001&quot;, &quot;S000…
@@ -402,6 +436,82 @@ display: none;
 ## $ measure                   &lt;dbl&gt; 81.4, 85.8, 88.7, 95.2, 96.6, 103.7, 99.2, 1…
 ## $ upper_confidence_interval &lt;dbl&gt; 82.1, 86.6, 89.5, 96.1, 97.5, 104.5, 100.1, …
 ## $ lower_confidence_interval &lt;dbl&gt; 80.6, 85.0, 87.9, 94.4, 95.8, 102.8, 98.4, 1…</code></pre>
+<pre><code>##   area_code          area_type          area_name              year     
+##  Length:19          Length:19          Length:19          Min.   :2003  
+##  Class :character   Class :character   Class :character   1st Qu.:2008  
+##  Mode  :character   Mode  :character   Mode  :character   Median :2012  
+##                                                           Mean   :2012  
+##                                                           3rd Qu.:2016  
+##                                                           Max.   :2021  
+##     period          type_definition     indicator           numerator    
+##  Length:19          Length:19          Length:19          Min.   :41235  
+##  Class :character   Class :character   Class :character   1st Qu.:50938  
+##  Mode  :character   Mode  :character   Mode  :character   Median :58439  
+##                                                           Mean   :55731  
+##                                                           3rd Qu.:59981  
+##                                                           Max.   :65251  
+##     measure      upper_confidence_interval lower_confidence_interval
+##  Min.   : 81.4   Min.   : 82.1             Min.   : 80.6            
+##  1st Qu.: 97.9   1st Qu.: 98.8             1st Qu.: 97.1            
+##  Median :108.8   Median :109.7             Median :107.9            
+##  Mean   :105.0   Mean   :105.9             Mean   :104.1            
+##  3rd Qu.:112.5   3rd Qu.:113.3             3rd Qu.:111.5            
+##  Max.   :119.4   Max.   :120.3             Max.   :118.5</code></pre>
+<pre class="r"><code>glimpse(DA_Scot_HB_data) %&gt;% 
+  summary()</code></pre>
+<pre><code>## Rows: 266
+## Columns: 11
+## $ area_code                 &lt;chr&gt; &quot;S08000015&quot;, &quot;S08000015&quot;, &quot;S08000015&quot;, &quot;S080…
+## $ area_type                 &lt;chr&gt; &quot;Health board&quot;, &quot;Health board&quot;, &quot;Health boar…
+## $ area_name                 &lt;chr&gt; &quot;NHS Ayrshire &amp; Arran&quot;, &quot;NHS Ayrshire &amp; Arra…
+## $ year                      &lt;dbl&gt; 2003, 2004, 2005, 2006, 2007, 2008, 2009, 20…
+## $ period                    &lt;chr&gt; &quot;2003/04 financial year&quot;, &quot;2004/05 financial…
+## $ type_definition           &lt;chr&gt; &quot;Crude rate per 10,000 population&quot;, &quot;Crude r…
+## $ indicator                 &lt;chr&gt; &quot;Domestic abuse&quot;, &quot;Domestic abuse&quot;, &quot;Domesti…
+## $ numerator                 &lt;dbl&gt; 2589, 3213, 3171, 3679, 3868, 3996, 4251, 44…
+## $ measure                   &lt;dbl&gt; 70.4, 87.2, 85.9, 99.6, 104.3, 107.4, 114.1,…
+## $ upper_confidence_interval &lt;dbl&gt; 73.2, 90.2, 89.0, 102.9, 107.7, 110.8, 117.6…
+## $ lower_confidence_interval &lt;dbl&gt; 67.7, 84.2, 83.0, 96.4, 101.1, 104.1, 110.7,…</code></pre>
+<pre><code>##   area_code          area_type          area_name              year     
+##  Length:266         Length:266         Length:266         Min.   :2003  
+##  Class :character   Class :character   Class :character   1st Qu.:2007  
+##  Mode  :character   Mode  :character   Mode  :character   Median :2012  
+##                                                           Mean   :2012  
+##                                                           3rd Qu.:2017  
+##                                                           Max.   :2021  
+##     period          type_definition     indicator           numerator      
+##  Length:266         Length:266         Length:266         Min.   :   21.0  
+##  Class :character   Class :character   Class :character   1st Qu.:  858.8  
+##  Mode  :character   Mode  :character   Mode  :character   Median : 3485.0  
+##                                                           Mean   : 3980.8  
+##                                                           3rd Qu.: 4982.5  
+##                                                           Max.   :17412.0  
+##     measure       upper_confidence_interval lower_confidence_interval
+##  Min.   : 10.10   Min.   : 15.50            Min.   :  6.30           
+##  1st Qu.: 60.38   1st Qu.: 64.97            1st Qu.: 54.70           
+##  Median : 91.20   Median : 94.20            Median : 88.20           
+##  Mean   : 86.82   Mean   : 91.28            Mean   : 82.72           
+##  3rd Qu.:114.40   3rd Qu.:118.08            3rd Qu.:111.65           
+##  Max.   :153.40   Max.   :155.70            Max.   :151.10</code></pre>
+</div>
+</div>
+<div id="data-cleaning" class="section level2">
+<h2>Data cleaning</h2>
+<div id="select-and-tidy-the-data-to-plot-domestic-abuse-trend-in-scotland" class="section level3">
+<h3>Select and tidy the data to plot domestic abuse trend in
+Scotland</h3>
+</div>
+<div id="select-and-tidy-the-data-to-plot-domestic-abuse-across-scotland-nhs-health-boards-in-2021" class="section level3">
+<h3>Select and tidy the data to plot domestic abuse across Scotland NHS
+health boards in 2021</h3>
+</div>
+<div id="remove-missing-values" class="section level3">
+<h3>Remove missing values</h3>
+<p>No missing values highlighted in the summary.</p>
+</div>
+</div>
+<div id="data-visualisation" class="section level2">
+<h2>Data visualisation</h2>
 </div>
 
 
