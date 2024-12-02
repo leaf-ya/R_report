@@ -44,18 +44,19 @@ glimpse(DA_Scot_HB_data) %>%
 ## Data cleaning
 
 ### Select and tidy the data to plot domestic abuse trend in Scotland
-```{r select-tidy-DA_Scot-data}
+```{r Scot-trend-dataset}
 DA_trend_data <- DA_Scot_data %>% 
-  select("period", "measure") %>% 
-  rename() %>% 
-  arrange(desc("measure")) %>% 
-  head() %>% 
-  summary()
+  select('period','measure') %>% 
+  rename(Year = 'period',
+         Prevalence = 'measure'
+         )
+head(DA_trend_data)
 ```
 
 ### Select and tidy the data to plot domestic abuse across Scotland NHS health boards in 2021
-```{r}
-
+```{r NHS-HB-2021-dataset}
+ 
+  
 ```
 
 ### Remove missing values
