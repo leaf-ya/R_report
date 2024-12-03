@@ -93,7 +93,7 @@ p1 <- DA_trend_data %>%
              y = Prevalence,
              group = 1)) +
   geom_line(colour = "purple") +
-  ggtitle("Trend of Domestic abuse in Scotland") +
+  ggtitle("Figure 1: Trend of Domestic abuse in Scotland") +
   xlab("Year")+
   ylab("Number of domestic abuse incidents*") +
   labs(caption = "*indicates crude rate per 10,000 population") +
@@ -108,7 +108,7 @@ p2 <- DA_2021_HB_categorised_data %>%
              group = 1)) +
   geom_col(alpha = 0.6) +
   coord_flip() +
-  ggtitle("Domestic abuse across NHS Scotland Health Boards in 2021") +
+  ggtitle("Figure 2: Domestic abuse across NHS Scotland Health Boards in 2021") +
   xlab("Health Boards")+
   ylab("Number of domestic abuse incidents*") +
   labs(caption = "*indicates crude rate per 10,000 population") +
@@ -121,13 +121,25 @@ p1
 p2
 ```
 
-## Interactive graphs for html
+## Interactive plots for .html
 
-```{r}
+```{r interactive-plots}
 ggplotly(p1, tooltip = c("x", "y"), width = 800, height = 600)
-
-ggplotly(p2, tooltip = c("x", "y"), width = 800, height = 600)
 ```
 
 ## Summary
+According to UK Office for National Statistics, 26% of women and 15% of men experience some form of domestic abuse between the ages of 16 to 59. (1) Appropriate data visualisations are necessary to create awareness among law enforcement about the increasing trend of domestic abuse over the last 19 years in Scotland. Categorising health boards according to prevalence will enable law enforcement to allocate appropriate resources and develop strategies to address this healthcare issue.
+
+Figure 1 is a line graph that accurately represents the rising trend in Scotland over the last 19 years. Figure 2 is a horizontal bar graph depicting prevalence (crude rate per 10,000 population) across Scotland's NHS health boards in 2021 (most recent data available). The health boards are arranged in descending order of prevalence and categorised into High, Medium, and Low for quick interpretation of the data. The median prevalence in 2021 was *103.73 (143.50,40.40)*. Fife had the highest number of domestic abuse incidents and crime in 2021, while Orkney had the lowest prevalence rate in 2021. Clear and consistent use of a viridis color palette makes the visualizations easy to interpret, and accessible to all, including individuals with color blindness.
+
+However, the data does not highlight variations in age, gender, socioeconomic factors, support services available, and type of abuse. Data is not available after the year 2021. It is also worth noting that this data could be underestimated as data collection relies on people reporting incidents of domestic abuse, which is often under reported. Data categorisation based on quantiles may not align with clinical or policy-relevant benchmarks. Extensive research is needed to inform new policies in the prevention of domestic violence. (2) 
+
+
+## References
+1. Elkin, M., 2018. Domestic abuse: Findings from the crime survey for England and
+Wales: Year ending March 2018. O"ice for National Statistics.
+
+2. Gilchrist, E.L. and Kebbell, M., 2013. Domestic violence: current issues in
+definitions and interventions with perpetrators in the UK. Forensic Psychology,
+p.219.
 
