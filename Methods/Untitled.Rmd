@@ -74,7 +74,7 @@ head(DA_2021_HB_data)
 
 ## Data visualisation
 
-```{r plot-data, fig.width=10}
+```{r plot-data, fig.width=8, fig.height=6}
 p1 <- DA_trend_data %>% 
   ggplot(aes(x = Year,
              y = Prevalence,
@@ -109,8 +109,10 @@ p2
 ## Interactive graphs for html
 
 ```{r}
-ggplotly(p1, tooltip = c("x", "y"), width = 1000, height = 600)
+ggplotly(p1, tooltip = c("x", "y"), width = 800, height = 600)
 
-ggplotly(p2, tooltip = c("x", "y"), width = 1000, height = 600)
+ggplotly(p2, tooltip = c("x", "y"), width = 800, height = 600)
 ```
+
+## Summary
 
